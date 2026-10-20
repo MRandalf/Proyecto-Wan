@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pin Chun Long | Restaurante Chifa</title>
+<meta name="description" content="Pin Chun Long, restaurante chifa: arroz chaufa, tallarín saltado, aeropuerto, wantán frito y más. Reserva tu mesa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rojo:#b3121b;
+    --rojo-osc:#7d0c12;
+    --dorado:#d9a441;
+    --crema:#fbf4e6;
+    --negro:#1a1210;
+    --gris:#5b4f4a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Poppins',sans-serif;color:var(--negro);background:var(--crema);line-height:1.6}
+  img{max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .container{width:min(1120px,92%);margin-inline:auto}
+  h1,h2,h3{font-family:'Noto Serif SC',serif;line-height:1.2}
+  section{padding:84px 0}
+  .eyebrow{color:var(--rojo);letter-spacing:.2em;text-transform:uppercase;font-size:.8rem;font-weight:600}
+  .section-title{font-size:clamp(1.8rem,4vw,2.6rem);margin:8px 0 14px}
+  .section-sub{color:var(--gris);max-width:620px}
+  .btn{display:inline-block;padding:13px 28px;border-radius:999px;font-weight:600;border:2px solid transparent;cursor:pointer;transition:.25s;font-family:inherit;font-size:1rem}
+  .btn-primary{background:var(--dorado);color:var(--negro)}
+  .btn-primary:hover{background:#ecb94f;transform:translateY(-2px)}
+  .btn-outline{border-color:#fff;color:#fff}
+  .btn-outline:hover{background:#fff;color:var(--rojo-osc)}
+  .btn-red{background:var(--rojo);color:#fff}
+  .btn-red:hover{background:var(--rojo-osc)}
+
+  /* NAV */
+  header{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(26,18,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(217,164,65,.25)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Noto Serif SC',serif;font-weight:800;font-size:1.25rem}
+  .logo-mark{width:38px;height:38px;border-radius:50%;background:var(--rojo);border:2px solid var(--dorado);display:grid;place-items:center;color:var(--dorado);font-size:1.1rem}
+  .logo span em{color:var(--dorado);font-style:normal}
+  nav ul{display:flex;gap:30px;list-style:none}
+  nav a{color:#f1e7d3;font-size:.92rem;font-weight:500;transition:.2s}
+  nav a:hover{color:var(--dorado)}
+  .nav-cta{padding:9px 20px;font-size:.9rem}
+  .burger{display:none;background:none;border:0;color:#fff;font-size:1.7rem;cursor:pointer}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;color:#fff;padding-top:72px;
+    background:
+      radial-gradient(circle at 80% 20%,rgba(217,164,65,.25),transparent 45%),
+      linear-gradient(135deg,var(--rojo-osc) 0%,var(--rojo) 55%,#8a0e15 100%);
+    position:relative;overflow:hidden}
+  .hero::before{content:"福";position:absolute;right:-40px;bottom:-120px;font-family:'Noto Serif SC',serif;font-size:36rem;color:rgba(255,255,255,.05);line-height:1;pointer-events:none}
+  .hero-inner{position:relative;max-width:680px}
+  .hero .eyebrow{color:var(--dorado)}
+  .hero h1{font-size:clamp(2.6rem,7vw,4.8rem);margin:12px 0 18px}
+  .hero h1 em{color:var(--dorado);font-style:normal}
+  .hero p{font-size:1.1rem;color:#f6e9d4;margin-bottom:30px;max-width:520px}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-stats{display:flex;gap:36px;margin-top:48px;flex-wrap:wrap}
+  .hero-stats div strong{display:block;font-family:'Noto Serif SC',serif;font-size:1.8rem;color:var(--dorado)}
+  .hero-stats div span{font-size:.85rem;color:#f1dcc0}
+
+  /* NOSOTROS */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .about-visual{aspect-ratio:1/1;border-radius:24px;background:linear-gradient(145deg,var(--negro),#3a1d18);position:relative;display:grid;place-items:center;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+  .about-visual::after{content:"";position:absolute;inset:16px;border:2px solid var(--dorado);border-radius:16px;opacity:.6}
+  .about-visual .big{font-size:7rem}
+  .about-visual .cap{position:absolute;bottom:34px;color:var(--dorado);font-family:'Noto Serif SC',serif;letter-spacing:.3em}
+  .features{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+  .feature{background:#fff;padding:18px;border-radius:14px;border-left:4px solid var(--rojo);box-shadow:0 4px 14px rgba(0,0,0,.05)}
+  .feature b{display:block;margin-bottom:2px}
+  .feature span{font-size:.88rem;color:var(--gris)}
+
+  /* CARTA */
+  .menu{background:var(--negro);color:#fff}
+  .menu .section-sub{color:#cdbfae}
+  .menu .eyebrow{color:var(--dorado)}
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:32px 0}
+  .tab{background:transparent;border:1.5px solid rgba(217,164,65,.5);color:#f1e7d3;padding:9px 20px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:.92rem;transition:.2s}
+  .tab:hover{border-color:var(--dorado)}
+  .tab.active{background:var(--dorado);color:var(--negro);border-color:var(--dorado);font-weight:600}
+  .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+  .dish{background:#261a17;border:1px solid rgba(217,164,65,.18);border-radius:16px;padding:22px;display:flex;gap:16px;transition:.25s}
+  .dish:hover{transform:translateY(-4px);border-color:var(--dorado)}
+  .dish .emoji{font-size:2.2rem;flex-shrink:0}
+  .dish h3{font-size:1.05rem;margin-bottom:4px;font-family:'Poppins',sans-serif;font-weight:600}
+  .dish p{font-size:.86rem;color:#c9b9a6;margin-bottom:8px}
+  .dish .price{color:var(--dorado);font-weight:600}
+  .dish .tag{display:inline-block;font-size:.7rem;background:var(--rojo);padding:2px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+  .menu-note{margin-top:28px;font-size:.85rem;color:#a99a89}
+
+  /* ESPECIALES */
+  .combos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:36px}
+  .combo{background:#fff;border-radius:20px;padding:30px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.07);position:relative;transition:.25s}
+  .combo:hover{transform:translateY(-6px)}
+  .combo.destacado{background:var(--rojo);color:#fff}
+  .combo.destacado .combo-price{color:var(--dorado)}
+  .combo.destacado li{border-color:rgba(255,255,255,.2)}
+  .combo .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--dorado);color:var(--negro);font-size:.72rem;font-weight:700;padding:4px 14px;border-radius:999px;letter-spacing:.08em}
+  .combo h3{font-size:1.3rem;margin-bottom:6px}
+  .combo-price{font-family:'Noto Serif SC',serif;font-size:2.2rem;color:var(--rojo);margin:10px 0}
+  .combo ul{list-style:none;text-align:left;margin:14px 0 22px}
+  .combo li{padding:8px 0;border-bottom:1px dashed #e3d6bd;font-size:.92rem}
+
+  /* RESERVAS */
+  .reserva{background:linear-gradient(135deg,var(--rojo-osc),var(--rojo));color:#fff}
+  .reserva .eyebrow{color:var(--dorado)}
+  .reserva-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .reserva .section-sub{color:#f6e3cf}
+  form{background:#fff;color:var(--negro);padding:32px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.84rem;font-weight:500;margin-bottom:5px;color:var(--gris)}
+  .field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1.5px solid #e2d6c0;border-radius:10px;font-family:inherit;font-size:.95rem;background:#fffdf8}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--rojo)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  form .btn{width:100%}
+  .form-msg{margin-top:12px;font-size:.85rem;color:var(--gris);text-align:center}
+
+  /* CONTACTO */
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:36px}
+  .info-card{background:#fff;padding:28px;border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+  .info-card .ico{font-size:1.8rem;margin-bottom:8px}
+  .info-card h3{font-family:'Poppins',sans-serif;font-size:1.05rem;margin-bottom:6px}
+  .info-card p{color:var(--gris);font-size:.92rem}
+  .map-box{margin-top:30px;height:320px;border-radius:20px;overflow:hidden;background:#e9dfc9;display:grid;place-items:center;color:var(--gris);text-align:center;padding:20px;border:2px dashed #cdb98f}
+
+  /* FOOTER */
+  footer{background:var(--negro);color:#cdbfae;padding:40px 0;text-align:center;font-size:.9rem}
+  footer .logo{justify-content:center;margin-bottom:12px}
+  footer .social{display:flex;gap:18px;justify-content:center;margin:14px 0}
+  footer .social a:hover{color:var(--dorado)}
+
+  .wa-float{position:fixed;right:20px;bottom:20px;z-index:60;background:#25d366;color:#fff;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-size:1.8rem;box-shadow:0 8px 22px rgba(0,0,0,.3);transition:.2s}
+  .wa-float:hover{transform:scale(1.08)}
+
+  @media(max-width:860px){
+    section{padding:64px 0}
+    .about-grid,.reserva-grid{grid-template-columns:1fr;gap:36px}
+    .about-visual{max-width:380px;margin-inline:auto;width:100%}
+    .burger{display:block}
+    nav{position:absolute;top:72px;left:0;right:0;background:var(--negro);max-height:0;overflow:hidden;transition:max-height .3s}
+    nav.open{max-height:380px;border-bottom:1px solid rgba(217,164,65,.25)}
+    nav ul{flex-direction:column;gap:0;padding:10px 4%}
+    nav li a{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav-cta{display:none}
+    .features,.row2{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#inicio" class="logo">
+      <div class="logo-mark">龍</div>
+      <span>Pin Chun <em>Long</em></span>
+    </a>
+    <nav id="menuNav">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#carta">Carta</a></li>
+        <li><a href="#combos">Combos</a></li>
+        <li><a href="#reservas">Reservas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <a href="#reservas" class="btn btn-primary nav-cta">Reservar mesa</a>
+    <button class="burger" id="burger" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+
+<main>
+<!-- INICIO -->
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-inner">
+      <span class="eyebrow">Restaurante Chifa</span>
+      <h1>El sabor del wok, <em>con tradición</em> y sazón</h1>
+      <p>En Pin Chun Long preparamos cada plato al fuego vivo: chaufa, tallarines, wantanes y los clásicos de la cocina chifa que te hacen volver.</p>
+      <div class="hero-btns">
+        <a href="#carta" class="btn btn-primary">Ver la carta</a>
+        <a href="#reservas" class="btn btn-outline">Reservar mesa</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>+20</strong><span>Platos de la casa</span></div>
+        <div><strong>Salón · Delivery</strong><span>Para llevar y a domicilio</span></div>
+        <div><strong>100%</strong><span>Hecho al momento</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="container about-grid">
+    <div class="about-visual">
+      <div class="big">🥡🐉</div>
+      <div class="cap">品 · 春 · 龍</div>
+    </div>
+    <div>
+      <span class="eyebrow">Nuestra historia</span>
+      <h2 class="section-title">Cocina chifa, hecha con cariño</h2>
+      <p class="section-sub">Pin Chun Long nace del encuentro entre la cocina cantonesa y los ingredientes de nuestra tierra. Cada receta combina técnica de wok, porciones generosas y ese sabor casero que une a la familia en la mesa.</p>
+      <div class="features">
+        <div class="feature"><b>🔥 Fuego de wok</b><span>Sabor ahumado en cada salteado.</span></div>
+        <div class="feature"><b>🥬 Insumos frescos</b><span>Verduras y carnes seleccionadas a diario.</span></div>
+        <div class="feature"><b>👨‍👩‍👧 Para compartir</b><span>Porciones pensadas para toda la familia.</span></div>
+        <div class="feature"><b>🛵 Delivery</b><span>Tu chifa favorito, en tu casa.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA -->
+<section class="menu" id="carta">
+  <div class="container">
+    <span class="eyebrow">Nuestra carta</span>
+    <h2 class="section-title">Elige tu plato favorito</h2>
+    <p class="section-sub">Los precios son referenciales: edítalos en el arreglo <code>MENU</code> al final del archivo.</p>
+    <div class="tabs" id="tabs"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+    <p class="menu-note">* Consulta por disponibilidad de platos del día. Precios en soles (S/).</p>
+  </div>
+</section>
+
+<!-- COMBOS -->
+<section id="combos">
+  <div class="container">
+    <span class="eyebrow">Para compartir</span>
+    <h2 class="section-title">Combos de la casa</h2>
+    <p class="section-sub">Ideales para reuniones familiares, cumpleaños o un almuerzo con amigos.</p>
+    <div class="combos-grid">
+      <div class="combo">
+        <h3>Combo Personal</h3>
+        <div class="combo-price">S/ 28</div>
+        <ul>
+          <li>🍚 Arroz chaufa especial</li>
+          <li>🍤 Wantán frito (4 unid.)</li>
+          <li>🥤 Chicha morada 300 ml</li>
+        </ul>
+        <a href="#reservas" class="btn btn-red">Pedir ahora</a>
+      </div>
+      <div class="combo destacado">
+        <span class="badge">MÁS PEDIDO</span>
+        <h3>Combo Familiar</h3>
+        <div class="combo-price">S/ 89</div>
+        <ul>
+          <li>🍚 Chaufa especial familiar</li>
+          <li>🍜 Tallarín saltado de pollo</li>
+          <li>🍗 Pollo tipakay</li>
+          <li>🥤 Gaseosa de 1.5 L</li>
+        </ul>
+        <a href="#reservas" class="btn btn-primary">Pedir ahora</a>
+      </div>
+      <div class="combo">
+        <h3>Combo Pareja</h3>
+        <div class="combo-price">S/ 52</div>
+        <ul>
+          <li>🍚 Aeropuerto (para 2)</li>
+          <li>🍤 Wantán frito (6 unid.)</li>
+          <li>🥤 2 chichas moradas</li>
+        </ul>
+        <a href="#reservas" class="btn btn-red">Pedir ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVAS -->
+<section class="reserva" id="reservas">
+  <div class="container reserva-grid">
+    <div>
+      <span class="eyebrow">Reservas y pedidos</span>
+      <h2 class="section-title">Reserva tu mesa en segundos</h2>
+      <p class="section-sub">Completa el formulario y te abriremos WhatsApp con tu solicitud lista para enviar. Confirmaremos tu reserva a la brevedad.</p>
+      <p style="margin-top:24px;font-size:1.05rem">📞 <strong>+51 900 000 000</strong><br>🕒 Todos los días · 12:00 – 22:00</p>
+    </div>
+    <form id="reservaForm">
+      <div class="row2">
+        <div class="field"><label for="nombre">Nombre</label><input id="nombre" required placeholder="Tu nombre"></div>
+        <div class="field"><label for="telefono">Teléfono</label><input id="telefono" type="tel" required placeholder="999 999 999"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="fecha">Fecha</label><input id="fecha" type="date" required></div>
+        <div class="field"><label for="hora">Hora</label><input id="hora" type="time" required value="13:00"></div>
+      </div>
+      <div class="field">
+        <label for="personas">Número de personas</label>
+        <select id="personas">
+          <option>1</option><option>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7</option><option>8</option>
+          <option>9 o más</option>
+        </select>
+      </div>
+      <div class="field"><label for="notas">Comentarios (opcional)</label><textarea id="notas" rows="3" placeholder="Cumpleaños, alergias, silla para bebé..."></textarea></div>
+      <button type="submit" class="btn btn-red">Reservar por WhatsApp</button>
+      <p class="form-msg">Se abrirá WhatsApp con los datos de tu reserva.</p>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container">
+    <span class="eyebrow">Visítanos</span>
+    <h2 class="section-title">Dónde encontrarnos</h2>
+    <div class="info-grid">
+      <div class="info-card"><div class="ico">📍</div><h3>Dirección</h3><p>Av. Principal 123<br>Tu ciudad, Perú</p></div>
+      <div class="info-card"><div class="ico">🕒</div><h3>Horario</h3><p>Lunes a domingo<br>12:00 p. m. – 10:00 p. m.</p></div>
+      <div class="info-card"><div class="ico">📞</div><h3>Contacto</h3><p>+51 900 000 000<br>hola@pinchunlong.pe</p></div>
+    </div>
+    <div class="map-box">
+      <div>🗺️<br><strong>Aquí va tu mapa de Google Maps</strong><br>Reemplaza este recuadro por el &lt;iframe&gt; de tu local<br>(Google Maps → Compartir → Insertar un mapa).</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo"><div class="logo-mark">龍</div><span>Pin Chun <em>Long</em></span></div>
+    <p>Restaurante Chifa · Sabor que se comparte</p>
+    <div class="social">
+      <a href="#" aria-label="Facebook">Facebook</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="TikTok">TikTok</a>
+    </div>
+    <p>© <span id="year"></span> Pin Chun Long. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬</a>
+
+<script>
+  // ====== CONFIGURACIÓN (edita aquí) ======
+  const WHATSAPP = "51900000000"; // número con código de país, sin + ni espacios
+
+  const MENU = {
+    "Arroz Chaufa": [
+      {e:"🍚", n:"Chaufa Especial", d:"Arroz salteado con pollo, cerdo, chancho asado y tortilla.", p:22, tag:"Favorito"},
+      {e:"🍚", n:"Chaufa de Pollo", d:"Clásico arroz chaufa con presas de pollo y cebolla china.", p:18},
+      {e:"🍚", n:"Chaufa de Carne", d:"Con lomo fino salteado y huevo.", p:22},
+      {e:"🦐", n:"Chaufa de Mariscos", d:"Camarones, calamares y pescado al wok.", p:28},
+      {e:"🥬", n:"Chaufa Vegetariano", d:"Con verduras frescas, tofu y huevo.", p:16}
+    ],
+    "Tallarines": [
+      {e:"🍜", n:"Tallarín Saltado de Pollo", d:"Fideos al wok con verduras, pollo y salsa de soya.", p:20, tag:"Favorito"},
+      {e:"🍜", n:"Tallarín Saltado de Carne", d:"Con lomo fino, cebolla, tomate y vainitas.", p:24},
+      {e:"🍜", n:"Tallarín Especial", d:"Mix de pollo, cerdo y camarones.", p:26},
+      {e:"🍜", n:"Tallarín con Pollo Tipakay", d:"Fideos acompañados de pollo en salsa agridulce.", p:24}
+    ],
+    "Platos de la Casa": [
+      {e:"✈️", n:"Aeropuerto", d:"Arroz chaufa y tallarín saltado en un solo plato.", p:26, tag:"Estrella"},
+      {e:"🍗", n:"Pollo Tipakay", d:"Pollo crocante con salsa de la casa y arroz blanco.", p:22},
+      {e:"🍖", n:"Chancho con Tamarindo", d:"Cerdo crocante en salsa de tamarindo.", p:25},
+      {e:"🥩", n:"Lomo Saltado al Estilo Chifa", d:"Lomo al wok con cebolla, tomate y papas.", p:28},
+      {e:"🐟", n:"Pescado en Salsa Agridulce", d:"Filete frito con piña y pimientos.", p:27}
+    ],
+    "Entradas y Sopas": [
+      {e:"🥟", n:"Wantán Frito (8 unid.)", d:"Crocantes, rellenos de cerdo, con salsa tamarindo.", p:14, tag:"Favorito"},
+      {e:"🥢", n:"Kam Lu Wantán", d:"Wantanes fritos con salsa agridulce, verduras y carne.", p:24},
+      {e:"🍲", n:"Sopa Wantán", d:"Caldo de pollo, wantanes, verduras y cerdo.", p:18},
+      {e:"🍲", n:"Sopa Fuchifú", d:"Sopa espesa con pollo, huevo y verduras.", p:16},
+      {e:"🥠", n:"Rollitos Primavera (6 unid.)", d:"Rellenos de verduras, crocantes por fuera.", p:12}
+    ],
+    "Bebidas": [
+      {e:"🥤", n:"Chicha Morada (jarra)", d:"Preparada en casa, jarra de 1 litro.", p:14},
+      {e:"🍋", n:"Limonada Frozen", d:"Fresca y bien helada.", p:10},
+      {e:"🍵", n:"Té Chifa", d:"Infusión caliente, cortesía en salón.", p:0, tag:"Cortesía"},
+      {e:"🥤", n:"Gaseosa 500 ml", d:"Variedad de sabores.", p:5}
+    ]
+  };
+  // =========================================
+
+  const tabsEl = document.getElementById('tabs');
+  const gridEl = document.getElementById('menuGrid');
+  const cats = Object.keys(MENU);
+
+  function renderCategory(cat){
+    gridEl.innerHTML = MENU[cat].map(x => `
+      <article class="dish">
+        <div class="emoji">${x.e}</div>
+        <div>
+          <h3>${x.n}${x.tag ? `<span class="tag">${x.tag}</span>` : ''}</h3>
+          <p>${x.d}</p>
+          <span class="price">${x.p ? 'S/ ' + x.p.toFixed(2) : 'Gratis'}</span>
+        </div>
+      </article>`).join('');
+    [...tabsEl.children].forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  }
+
+  cats.forEach(cat => {
+    const b = document.createElement('button');
+    b.className = 'tab';
+    b.textContent = cat;
+    b.dataset.cat = cat;
+    b.addEventListener('click', () => renderCategory(cat));
+    tabsEl.appendChild(b);
+  });
+  renderCategory(cats[0]);
+
+  // Menú móvil
+  const nav = document.getElementById('menuNav');
+  document.getElementById('burger').addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // Fecha mínima = hoy
+  const fecha = document.getElementById('fecha');
+  fecha.min = new Date().toISOString().split('T')[0];
+
+  // Reserva por WhatsApp
+  document.getElementById('reservaForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    const msg =
+`Hola Pin Chun Long, quiero reservar una mesa:
+• Nombre: ${v('nombre')}
+• Teléfono: ${v('telefono')}
+• Fecha: ${v('fecha')}
+• Hora: ${v('hora')}
+• Personas: ${v('personas')}
+• Comentarios: ${v('notas') || '-'}`;
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  document.getElementById('waFloat').href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hola Pin Chun Long, quisiera hacer un pedido.')}`;
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
